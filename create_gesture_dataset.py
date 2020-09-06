@@ -13,6 +13,7 @@ for image_class in classes:
     while_start = 1
 
     while while_start:
+        
         ret, frame = cam.read()
         if not ret:
             print("failed to grab frame")
@@ -27,8 +28,9 @@ for image_class in classes:
             while_start = 0
         elif k%256 == 32:
             # SPACE pressed
-            img_name = "opencv_frame_{}.png".format(img_counter)
-            path = "/home/nitish/Downloads/Other_Things/Personal_projects/Git_Repos/create_gesture_dataset/" + image_class
+            img_name = "opencv_frame__{}.png".format(img_counter)
+            path = os.getcwd()
+            path = os.path.join(path,image_class)
             if not os.path.isdir(path):
                 os.mkdir(path)
             cv2.imwrite(os.path.join(path ,img_name), frame)
